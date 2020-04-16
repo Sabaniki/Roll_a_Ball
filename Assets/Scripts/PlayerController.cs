@@ -7,16 +7,23 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
     public float speed;
     public Text countText;
+    public Text winText;
 
     private Rigidbody rb;
     private int count;
 
-    private void UpdateCountText() => countText.text = "Count: " + count.ToString();
+    private void UpdateCountText() {
+        countText.text = "Count: " + count.ToString();
+        if (count >= 13) {
+            winText.text = "You Win!!";
+        }
+    }
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
         count = 0;
         UpdateCountText();
+        winText.text = "";
     }
 
     // 物理演算が実行される直前に呼び出されるメソッド。物理演算に関するコードをこのメソッドに記述する。
